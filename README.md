@@ -56,6 +56,13 @@ const thanksDiv = document.getElementById("thanks");
 // MP3 ses dosyası (index.html ile aynı klasörde olmalı)
 const cheerSound = new Audio("cheer.mp3");
 
+// İlk kullanıcı etkileşiminde sesi "unlock" et
+document.body.addEventListener("click", function initSound() {
+    cheerSound.play().then(()=>cheerSound.pause()).catch(()=>{});
+    cheerSound.currentTime = 0;
+    document.body.removeEventListener("click", initSound);
+}, {once: true});
+
 noBtn.onclick = function() {
   count++;
   countDiv.innerText = "Hayır sayısı: " + count;
@@ -72,16 +79,16 @@ noBtn.onclick = function() {
 
 yesBtn.onclick = function() {
   // Konfeti patlat
-  for(let i=0; i<100; i++){
+  for(let i=0;i<100;i++){
     let confetti = document.createElement("div");
-    confetti.style.position = "fixed";
-    confetti.style.width = "10px";
-    confetti.style.height = "10px";
-    confetti.style.background = "hsl(" + Math.random()*360 + ", 100%, 50%)";
-    confetti.style.top = Math.random()*window.innerHeight + "px";
-    confetti.style.left = Math.random()*window.innerWidth + "px";
-    confetti.style.borderRadius = "50%";
-    confetti.style.zIndex = "9999";
+    confetti.style.position="fixed";
+    confetti.style.width="10px";
+    confetti.style.height="10px";
+    confetti.style.background="hsl("+Math.random()*360+",100%,50%)";
+    confetti.style.top=Math.random()*window.innerHeight+"px";
+    confetti.style.left=Math.random()*window.innerWidth+"px";
+    confetti.style.borderRadius="50%";
+    confetti.style.zIndex="9999";
     document.body.appendChild(confetti);
     setTimeout(()=>confetti.remove(),2000);
   }
@@ -92,9 +99,7 @@ yesBtn.onclick = function() {
 
   // MP3 sesini çal
   cheerSound.currentTime = 0;
-  cheerSound.play().catch(() => {
-    alert("Tarayıcınız sesi otomatik oynatmayı engelliyor. Evet butonuna tekrar basın.");
-  });
+  cheerSound.play().catch(()=>{});
 };
 </script>
 </body>
