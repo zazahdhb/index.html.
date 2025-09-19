@@ -94,7 +94,7 @@ yesBtn.onclick = function() {
   }
 
   // Teşekkür mesajını göster
-  thanksDiv.innerText = "Yeeey, barıştık! 🎉 İlk deneyimim";
+  thanksDiv.innerText = "Yeeey🎉";
   thanksDiv.style.display = "block";
 
   // MP3 sesini çal
