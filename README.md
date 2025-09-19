@@ -47,11 +47,35 @@ button:hover { background-color: #45a049; }
 <div id="thanks"></div>
 
 <script>
-let count = 0;
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const countDiv = document.getElementById("count");
-const thanksDiv = document.getElementById("thanks");
+yesBtn.onclick = async function() {
+    // Konfeti patlat
+    for(let i=0;i<100;i++){
+        let confetti = document.createElement("div");
+        confetti.style.position="fixed";
+        confetti.style.width="10px";
+        confetti.style.height="10px";
+        confetti.style.background="hsl("+Math.random()*360+",100%,50%)";
+        confetti.style.top=Math.random()*window.innerHeight+"px";
+        confetti.style.left=Math.random()*window.innerWidth+"px";
+        confetti.style.borderRadius="50%";
+        confetti.style.zIndex="9999";
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),2000);
+    }
+
+    // Teşekkür mesajını göster
+    thanksDiv.innerText = "Yeeey, barıştık! 🎉✨";
+    thanksDiv.style.display = "block";
+
+    // MP3 sesini çal
+    try {
+        const cheerSound = new Audio("cheer.mp3");
+        await cheerSound.play();
+    } catch(e) {
+        console.log("Tarayıcı sesi engelledi, tekrar tıklayın.");
+    }
+};
+
 
 noBtn.onclick = function() {
   count++;
