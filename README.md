@@ -53,16 +53,6 @@ const noBtn = document.getElementById("noBtn");
 const countDiv = document.getElementById("count");
 const thanksDiv = document.getElementById("thanks");
 
-// MP3 ses dosyası (index.html ile aynı klasörde olmalı)
-const cheerSound = new Audio("cheer.mp3");
-
-// İlk kullanıcı etkileşiminde sesi "unlock" et
-document.body.addEventListener("click", function initSound() {
-    cheerSound.play().then(()=>cheerSound.pause()).catch(()=>{});
-    cheerSound.currentTime = 0;
-    document.body.removeEventListener("click", initSound);
-}, {once: true});
-
 noBtn.onclick = function() {
   count++;
   countDiv.innerText = "Hayır sayısı: " + count;
@@ -93,14 +83,15 @@ yesBtn.onclick = function() {
     setTimeout(()=>confetti.remove(),2000);
   }
 
-  // Teşekkür mesajını göster
-  thanksDiv.innerText = "Yeeey🎉";
+  // Teşekkür mesajını göster (konfeti emojisi ile)
+  thanksDiv.innerText = "Yeeey, barıştık! 🎉✨";
   thanksDiv.style.display = "block";
 
-  // MP3 sesini çal
-  cheerSound.currentTime = 0;
+  // MP3 sesini çal (buton tıklaması ile)
+  const cheerSound = new Audio("cheer.mp3");
   cheerSound.play().catch(()=>{});
 };
 </script>
 </body>
 </html>
+
